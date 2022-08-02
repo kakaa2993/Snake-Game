@@ -1,13 +1,17 @@
 from turtle import Turtle
+STARTING_POSITION = [(0, 0), (-20, 0), (-40, 0), ]
+MOVEMENT_DISTANCE = 20
 
 
 class Snake:
     """" a class about the snake body and the all movement of the snake"""
     def __init__(self):
         """create a 3 segment in the screen"""
-        self.starting_position = [(0, 0), (-20, 0), (-40, 0), ]
         self.segments = []
-        for position in self.starting_position:
+        self.create_snake()
+
+    def create_snake(self):
+        for position in STARTING_POSITION:
             seg = Turtle(shape="square")
             seg.penup()
             seg.color("white")
@@ -21,4 +25,4 @@ class Snake:
             x_position = segment_before.xcor()
             y_position = segment_before.ycor()
             self.segments[segment_num].goto(x=x_position, y=y_position)
-        self.segments[0].forward(20)
+        self.segments[0].forward(MOVEMENT_DISTANCE)
