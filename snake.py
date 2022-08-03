@@ -1,7 +1,10 @@
-from turtle import Turtle
+import turtle
 STARTING_POSITION = [(0, 0), (-20, 0), (-40, 0), ]
 MOVEMENT_DISTANCE = 20
-
+UP = 90
+DOWN = 270
+LEFT = 180
+RIGHT = 0
 
 class Snake:
     """" a class about the snake body and the all movement of the snake"""
@@ -9,10 +12,10 @@ class Snake:
         """create a 3 segment in the screen"""
         self.segments = []
         self.create_snake()
-
+        self.head = self.segments[0]
     def create_snake(self):
         for position in STARTING_POSITION:
-            seg = Turtle(shape="square")
+            seg = turtle.Turtle(shape="square")
             seg.penup()
             seg.color("white")
             seg.goto(position)
@@ -25,4 +28,20 @@ class Snake:
             x_position = segment_before.xcor()
             y_position = segment_before.ycor()
             self.segments[segment_num].goto(x=x_position, y=y_position)
-        self.segments[0].forward(MOVEMENT_DISTANCE)
+        self.head.forward(MOVEMENT_DISTANCE)
+
+    def up(self):
+        if self.head.heading() != DOWN:
+            self.head.setheading(UP)
+
+    def down(self):
+        if self.head.heading() != UP:
+            self.head.setheading(DOWN)
+
+    def left(self):
+        if self.head.heading() != RIGHT:
+            self.head.setheading(LEFT)
+
+    def right(self):
+        if self.head.heading() != LEFT:
+            self.head.setheading(RIGHT)
